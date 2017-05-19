@@ -46,7 +46,7 @@ end
 
 get '/account/:id' do
     @user = User.find(params[:id])
-    @blogs = @user.blogs
+    @blogs = @user.blogs.reverse
     if session[:user_id] == @user.id
         @this_user = true
     else
@@ -78,12 +78,11 @@ post '/delete_blog/:id' do
 end
 
 get '/blogs' do
-    @blogs = Blog.all
-    num_blogs = @blogs.length
-    if num_blogs < 10
+    @blogs = Blog.all.reverse
+    if @blogs.length < 10
         @top_10 = @blogs
     else
-        @top_10 = @blogs[num_blogs - 10, num_blogs]
+        @top_10 = @blogs[0, 10]
     end
     erb :blogs
 end
