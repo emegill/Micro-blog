@@ -1,5 +1,5 @@
 body {
-  background-color: #99b898;
+  background-color: #FFEEE0;
 }
 
 a {
@@ -14,19 +14,21 @@ a {
     float: right;
     list-style: none;
     position: fixed;
-    top: 0;
+    top: 10;
     right: 0;
+    margin-right: 10px;
 }
 
 .navBar {
     position: fixed;
-    top: 0;
+    top: 340;
     left: 0;
     width: 100%;
     height: 50px;
     background-color: #e84a5f;
     z-index: 100;
     border-bottom: 10px solid #ff847c;
+    border-top: 10px solid #ff847c;
 }
 
 .navBar ul li:hover {
@@ -37,11 +39,13 @@ a {
 .menuBar {
     color: #F5F5ED;
     padding: 0px 16px;
+    margin: 16px;
     height: 50%;
     font-family: "futura";
     list-style: none;
     float: left;
     text-shadow: 2px 2px black;
+    text-align: center;
 }
 
 .footer {
@@ -65,3 +69,44 @@ a {
 .main-container {
   margin-top: 150px;
 }
+
+.llama {
+  background-image: url("/images/lama.gif");
+  background-image: 100% 100%;
+  height: 275px;
+  width: 100%;
+  position: fixed;
+  top: 70;
+  left: 0;
+}
+
+.nameBar {
+  color: #F5F5ED;
+  padding: 5px;
+  margin: 0px;
+  height: 70px;
+  width: 100%;
+  font-family: "futura";
+  list-style: none;
+  float: left;
+  text-shadow: 2px 2px #ff847c;
+  text-align: center;
+  font-size: 36px;
+  background-color:#487B8C;
+  letter-spacing: 6px;
+}
+
+// .nameBar2 {
+//   color: #F5F5ED;
+//   padding: 0px 0px;
+//   margin: 0px;
+//   height: 70px;
+//   width: 100%;
+//   font-family: "futura";
+//   list-style: none;
+//   float: left;
+//   text-shadow: 2px 2px black;
+//   text-align: center;
+//   font-size: 18px;
+//   display: block;
+// }

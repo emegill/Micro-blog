@@ -1,27 +1,33 @@
 <nav>
-   <div class="navBar">
-        <ul>
-           <li class="blogBar menuBar"> WingSherpa </li>
-             <a href = "/product"><li class="menuBar">Account</li></a>
-             <a href = "/contact"><li class="menuBar">Blogs</li></a>
-             <a href = "/about"><li class="menuBar">Sign-In</li></a>
-             <a href = "/about"><li class="menuBar">Sign-Out</li></a>
-            <li class="media"></li>
-           </ul>
-   </div>
+
+  <div class="nameBar"> Winged-Sherpa</div>
+  <div class="nameBar2"> where llamas fly</div>
+
+  <div class = "llama"></div>
+
+     <div class="navBar">
+          <ul>
+               <a href = "/product"><li class="menuBar">Account</li></a>
+               <a href = "/contact"><li class="menuBar">Blogs</li></a>
+               <a href = "/about"><li class="menuBar">Sign-In</li></a>
+               <a href = "/about"><li class="menuBar">Sign-Out</li></a>
+              <li class="media"></li>
+             </ul>
+    </div>
 </nav>
 
-<div class = main-container><%= yield %></div>
+  <div class = main-container><%= yield %></div>
 
-<footer>
-       <div class="footer">
+  <footer>
+         <div class="footer">
 
-                 <ul>
-                    <li class="menuBar">E-mail: xxxx</li>
-                    <li class="menuBar">xxxx</li>
-                </ul>
-         </div>
+                   <ul>
+                      <li class="menuBar">User Search</li>
+                      <li class="menuBar"><input type="text" name="username" placeholder="Username"></li>
+                      <li class="menuBar"><input type="submit" value="Sign In"></li>
+                  </ul>
+           </div>
 
-</footer>
+  </footer>
 
 <link rel="stylesheet" type="text/css" href="/css/styles.css">
