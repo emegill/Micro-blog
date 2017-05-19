@@ -27,6 +27,7 @@ post '/create_user' do
 end
 
 get '/account/:id' do
-    user = User.find(params[:id])
+    @user = User.find(params[:id])
+    
     erb :account
 end
