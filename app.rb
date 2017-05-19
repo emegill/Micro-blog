@@ -20,6 +20,11 @@ post '/sign_in' do
     end
 end
 
+get '/sign_out' do
+    session[:user_id] = nil
+    redirect '/'
+end
+
 post '/create_user' do
     user = User.create(params[:user])
     session[:user_id] = user.id
