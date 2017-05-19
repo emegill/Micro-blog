@@ -3,3 +3,23 @@
         <%= @user.username %>'s Profile
     </h1>
 </div>
+
+<% if session[:user_id] %>
+
+    <div class="new-blog-form__container">
+        <form id="new-blog-form" action="/create_blog" method="post">
+
+            <input type="text" name="[blog]title" placeholder="Blog title">
+
+            <input type="hidden" name="[blog]user_id" value="<%= @user.id %>">
+
+            <div class="new-blog-form__content-input">
+                <textarea form="new-blog-form" name="[blog]content" placeholder="Type your micro-blog here (max 150 characters)" maxlength="150" rows="3" cols="60"></textarea>
+            </div>
+
+
+            <input type="submit">
+        </form>
+    </div>
+
+<% end %>

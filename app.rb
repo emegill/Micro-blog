@@ -28,6 +28,12 @@ end
 
 get '/account/:id' do
     @user = User.find(params[:id])
-    
+
     erb :account
+end
+
+post '/create_blog' do
+    @user = User.find(session[:user_id])
+    Blog.create(params[:blog])
+    redirect "/account/#{@user.id}"
 end
