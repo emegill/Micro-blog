@@ -1,0 +1,19 @@
+.blog-list__edit-blog-btn {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.blog-list__del-blog-btn {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.update-blog-form__container {
+    display: none;
+}
+
+.delete-blog-modal {
+    display: none;
+}

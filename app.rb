@@ -7,6 +7,9 @@ set :sessions, true
 require './models'
 
 get '/' do
+    # if session[:user_id]
+    #     redirect "/account/#{session[:user_id]}"
+    # end
     erb :home
 end
 
@@ -49,5 +52,28 @@ post '/create_blog' do
 end
 
 post '/update_blog' do
-    
+    id = params[:blog_id]
+    p params
+    blog = Blog.find(id)
+    blog.title = params[:title]
+    blog.content = params[:content]
+
+    blog.save
+    redirect "/account/#{params[:user_id]}"
+end
+
+post '/delete_blog/:id' do
+    Blog.destroy(params[:id])
+    redirect "/account/#{session[:user_id]}"
+end
+
+get '/blogs' do
+    @blogs = Blog.all
+    num_blogs = @blogs.length
+    if num_blogs < 10
+        @top_10 = @blogs
+    else
+        @top_10 = @blogs[num_blogs - 10, num_blogs]
+    end
+    erb :blogs
 end
