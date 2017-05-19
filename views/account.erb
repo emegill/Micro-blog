@@ -5,7 +5,7 @@
     <p>Username: <%= @user.username %></p>
 </div>
 
-<% if session[:user_id] %>
+<% if session[:user_id] == @user.id %>
 
     <div class="new-blog-form__container">
         <form id="new-blog-form" action="/create_blog" method="post">
