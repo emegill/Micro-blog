@@ -1,0 +1,9 @@
+.delete-user-modal {
+    display: none;
+}
+
+.delete-user-btn {
+    &:hover {
+        cursor: pointer;
+    }
+}

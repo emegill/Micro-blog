@@ -34,6 +34,16 @@ post '/create_user' do
     redirect "/account/#{user.id}"
 end
 
+# post '/edit_user' do
+#     user = User.find(session[:user_id])
+#     user.update(username: , password: )
+# end
+
+post '/delete_user' do
+    User.destroy(session[:user_id])
+    redirect '/'
+end
+
 get '/account/:id' do
     @user = User.find(params[:id])
     @blogs = @user.blogs
