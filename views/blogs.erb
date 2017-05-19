@@ -27,11 +27,17 @@
             </form>
         </div>
 
-        <a href="/delete_blog/<%= blog.id %>">
-            <div class="blog-list__del-blog-btn">
-                Delete blog
-            </div>
-        </a>
+        <div class="blog-list__del-blog-btn">
+            Delete blog
+        </div>
+        <div class="delete-blog-modal">
+            <p>Are you sure you wish to delete this blog?</p>
+            <form id="delete-blog-form" action="/delete_blog/<%= blog.id %>" method="post">
+                <input type="submit" value="Yes, delete">
+            </form>
+            <button class="delete-blog__cancel-btn">Cancel</button>
+        </div>
+
 
     <% end %>
 

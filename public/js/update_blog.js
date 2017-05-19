@@ -1,4 +1,36 @@
 var updateBlog = new UpdateBlog();
+var deleteBlog = new DeleteBlog();
+
+function setDisplayNone(elem) {
+    elem.style.display = "none";
+}
+
+function setDisplayBlock(elem) {
+    elem.style.display = "block";
+}
+
+
+function DeleteBlog() {
+    var delBlogModals = document.getElementsByClassName('delete-blog-modal');
+    // var delBlogForms = document.getElementsByClassName('delete-blog-form');
+    var delBlogBtns = document.getElementsByClassName('blog-list__del-blog-btn');
+    var cancelBtns = document.getElementsByClassName('delete-blog__cancel-btn');
+
+
+    for (let k = 0; k < delBlogBtns.length; k++) {
+        delBlogBtns[k].addEventListener("click", function() {
+            setDisplayBlock(delBlogModals[k]);
+        });
+        cancelBtns[k].addEventListener("click", function() {
+            setDisplayNone(delBlogModals[k]);
+        });
+    }
+    // for (let k = 0; k < cancelBtns.length; k++) {
+    //
+    // }
+}
+
+
 
 function UpdateBlog() {
 
@@ -23,24 +55,15 @@ function UpdateBlog() {
 
     function closeEditBlog(blogNum) {
         setDisplayNone(updateBlogFormContainers[blogNum]);
-        // setDisplayBlock(blogTitles[blogNum]);
         setDisplayBlock(blogContents[blogNum]);
         editBlogBtns[blogNum].innerHTML = "Edit blog"
     }
 
     function openEditBlog(blogNum) {
         setDisplayBlock(updateBlogFormContainers[blogNum]);
-        // setDisplayNone(blogTitles[blogNum]);
         setDisplayNone(blogContents[blogNum]);
         editBlogBtns[blogNum].innerHTML = "Close edit"
     }
 
-    function setDisplayNone(elem) {
-        elem.style.display = "none";
-    }
-
-    function setDisplayBlock(elem) {
-        elem.style.display = "block";
-    }
 
 }
