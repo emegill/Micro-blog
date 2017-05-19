@@ -7,9 +7,9 @@ set :sessions, true
 require './models'
 
 get '/' do
-    # if session[:user_id]
-    #     redirect "/account/#{session[:user_id]}"
-    # end
+    if session[:user_id]
+        redirect "/account/#{session[:user_id]}"
+    end
     erb :home
 end
 
