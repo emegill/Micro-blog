@@ -49,5 +49,12 @@ post '/create_blog' do
 end
 
 post '/update_blog' do
-    
+    id = params[:blog_id]
+    p params
+    blog = Blog.find(id)
+    blog.title = params[:title]
+    blog.content = params[:content]
+
+    blog.save
+    redirect "/account/#{params[:user_id]}"
 end

@@ -31,19 +31,22 @@
 
         <div class="blog-list__blog-title">
             <%= blog.title %>
+        </div>
+
 
             <% if @this_user %>
-                <span class="blog-list__edit-blog-btn">Edit blog</span>
+                <div class="blog-list__edit-blog-btn">Edit blog</div>
                 <div class="update-blog-form__container">
-                    <form id="update-blog-form" action="/update_blog" method="post">
 
-                        <input type="text" name="[blog]title" value="<%= blog.title %>">
+                    <form id="update-blog-<%= blog.id %>-form" action="/update_blog" method="post">
 
-                        <input type="hidden" name="[blog]user_id" value="<%= @user.id %>">
-                        <input type="hidden" name="[blog]id" value="<%= blog.id %>">
+                        <input type="text" name="title" value="<%= blog.title %>">
+
+                        <input type="hidden" name="user_id" value="<%= @user.id %>">
+                        <input type="hidden" name="blog_id" value="<%= blog.id %>">
 
                         <div class="new-blog-form__content-input">
-                            <textarea form="new-blog-form" name="[blog]content" maxlength="150" rows="3" cols="60"><%= blog.content %></textarea>
+                            <textarea form="update-blog-<%= blog.id %>-form" name="content" maxlength="150" rows="3" cols="60"><%= blog.content %></textarea>
                         </div>
 
                         <input type="submit">
@@ -51,7 +54,7 @@
                 </div>
             <% end %>
 
-        </div>
+
         <div class="blog-list__blog-content">
             <%= blog.content %>
         </div>
