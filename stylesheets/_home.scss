@@ -7,8 +7,10 @@
   display: flex;
   justify-content: space-around;
   float: left;
-  // margin-top: 200px;
+  margin-top: 110px;
   width: 35%;
+  margin-left: 30%;
+  background-color: #EEE6E0;
 }
 
 .sign-up-form__container {
@@ -16,6 +18,22 @@
   display: flex;
   justify-content: space-around;
   float: left;
-  // margin-top: 200px;
+  margin-top: 150px;
   width: 35%;
+  margin-left: 30%;
+  background-color: #EEE6E0;
+}
+
+.home_header {
+  color: #487B8C;
+  padding: 15px;
+  margin: 0px;
+  height: 70px;
+  width: 100%;
+  font-family: "futura";
+  list-style: none;
+  float: left;
+  text-shadow: 2px 2px #ff847c;
+  text-align: center;
+  font-size: 24px;
 }
