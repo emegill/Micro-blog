@@ -62,6 +62,11 @@ post '/update_blog' do
     redirect "/account/#{params[:user_id]}"
 end
 
+get '/delete_blog/:id' do
+    Blog.destroy(params[:id])
+    redirect "/account/#{session[:user_id]}"
+end
+
 get '/blogs' do
     @blogs = Blog.all
     num_blogs = @blogs.length
