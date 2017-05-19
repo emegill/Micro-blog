@@ -1,7 +1,8 @@
 <div class="user-info__container">
-    <h1 class="user-info__username">
-        <%= @user.username %>'s Profile
+    <h1 class="user-info__full-name">
+        <%= "#{@user.fname} #{@user.lname}"%>
     </h1>
+    <p>Username: <%= @user.username %></p>
 </div>
 
 <% if session[:user_id] %>
@@ -17,9 +18,23 @@
                 <textarea form="new-blog-form" name="[blog]content" placeholder="Type your micro-blog here (max 150 characters)" maxlength="150" rows="3" cols="60"></textarea>
             </div>
 
-
             <input type="submit">
         </form>
     </div>
 
 <% end %>
+
+<div class="blog-list__container">
+    <h2><%= @user.fname %>'s Blogs</h2>
+
+    <% @blogs.each do |blog| %>
+
+        <div class="blog-list__blog-title">
+            <%= blog.title %>
+        </div>
+        <div class="blog-list__blog-content">
+            <%= blog.content %>
+        </div>
+
+    <% end %>
+</div>

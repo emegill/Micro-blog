@@ -28,7 +28,7 @@ end
 
 get '/account/:id' do
     @user = User.find(params[:id])
-
+    @blogs = @user.blogs
     erb :account
 end
 
