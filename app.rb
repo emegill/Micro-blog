@@ -34,6 +34,11 @@ end
 get '/account/:id' do
     @user = User.find(params[:id])
     @blogs = @user.blogs
+    if session[:user_id] == @user.id
+        @this_user = true
+    else
+        @this_user = false
+    end
     erb :account
 end
 
@@ -41,4 +46,8 @@ post '/create_blog' do
     @user = User.find(session[:user_id])
     Blog.create(params[:blog])
     redirect "/account/#{@user.id}"
+end
+
+post '/update_blog' do
+    
 end
