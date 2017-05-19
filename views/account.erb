@@ -8,6 +8,20 @@
 
 <% if @this_user %>
 
+    <div class="delete-user-btn">
+        Delete account
+    </div>
+    <div class="delete-user-modal">
+        <p>
+            Are you sure you wish to delete your account? This will delete your blog posts and cannot be undone.
+        </p>
+        <form action="/delete_user" method="post">
+            <input type="submit" value="Yes, delete account">
+        </form>
+        <button class="delete-user__cancel-btn">Cancel</button>
+    </div>
+
+    <h2>Post new blog:</h2>
     <div class="new-blog-form__container">
         <form id="new-blog-form" action="/create_blog" method="post">
 
@@ -76,3 +90,4 @@
 </div>
 
 <script type="text/javascript" src="/js/update_blog.js"></script>
+<script type="text/javascript" src="/js/update_user.js"></script>
