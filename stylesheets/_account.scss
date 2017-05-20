@@ -2,8 +2,18 @@
     display: none;
 }
 
-.delete-user-btn {
-    &:hover {
-        cursor: pointer;
-    }
+// .delete-user-btn {
+//     &:hover {
+//         cursor: pointer;
+//     }
+// }
+//
+// .edit-user-btn {
+//     &:hover {
+//         cursor: pointer;
+//     }
+// }
+
+.edit-user-modal {
+    display: none;
 }
