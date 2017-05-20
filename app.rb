@@ -76,6 +76,21 @@ post '/delete_user' do
     redirect '/'
 end
 
+post '/search_user' do
+    user_input = params[:username]
+    user = User.where(username: user_input).first
+    if user == nil
+        redirect "/user_not_found/#{user_input}"
+    else
+        redirect "/account/#{user.id}"
+    end
+end
+
+get '/user_not_found/:username' do
+    @username = params[:username]
+    erb :user_not_found
+end
+
 post '/create_blog' do
     @user = User.find(session[:user_id])
     Blog.create(params[:blog])

@@ -20,23 +20,21 @@
 
 </nav>
 
-  <div class ="main-container"><%= yield %></div>
+<div class ="main-container"><%= yield %></div>
 
-  <footer>
-         <div class="footer">
-           <div class="footer_size">
-             </div>
-                     <ul>
-                        <li class="menuBar_footer">User Search</li>
-                        <li class="menuBar_footer"><input type="text" name="username" placeholder="Username"></li>
-                        <li class="menuBar_footer"><input type="submit" value="Search"></li>
-                        <li class="menuBar_footer footer2">Go Llama Go Llama Go!</li>
-                    </ul>
-             </div>
-           </div>
-         </div>
+<footer>
+    <div class="footer">
+         <form action="/search_user" method="post">
+            <ul>
+                <li class="menuBar_footer">User Search</li>
+                <li class="menuBar_footer"><input type="text" name="username" placeholder="Username"></li>
+                <li class="menuBar_footer"><input type="submit" value="Search"></li>
+                <li class="menuBar_footer footer2">Go Llama Go Llama Go!</li>
+            </ul>
+        </form>
+    </div>
 
-  </footer>
+</footer>
 
 <link rel="stylesheet" type="text/css" href="/css/styles.css">
 <script type="text/javascript" src="/js/layout.js"></script>
