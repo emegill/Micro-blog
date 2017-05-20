@@ -7,6 +7,9 @@
     <div class="blog-list__blog-title">
         <%= blog.title %>
     </div>
+    <div class="blog-list__blog-content">
+        <%= blog.content %>
+    </div>
 
     <% if author.id == session[:user_id] %>
         <div class="update-blog-form__container">
@@ -35,14 +38,7 @@
                 <button type="button" class="delete-blog__cancel-btn">Cancel</button>
             </form>
         </div>
-
-
     <% end %>
-
-    <div class="blog-list__blog-content">
-        <%= blog.content %>
-    </div>
-
 <% end %>
 
 <script type="text/javascript" src="/js/update_blog.js"></script>

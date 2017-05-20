@@ -36,8 +36,8 @@ function UpdateBlog() {
     var editBlogBtns = document.getElementsByClassName('blog-list__edit-blog-btn');
     var cancelEditBlogBtns = document.getElementsByClassName('blog-list__cancel-edit-blog-btn');
     var updateBlogFormContainers = document.getElementsByClassName('update-blog-form__container');
-    var blogTitles = document.getElementsByClassName('blog-list__blog-title')
-    var blogContents = document.getElementsByClassName('blog-list__blog-content')
+    var blogTitles = document.getElementsByClassName('blog-list__blog-title');
+    var blogContents = document.getElementsByClassName('blog-list__blog-content');
 
     for (let k = 0; k < editBlogBtns.length; k++) {
         editBlogBtns[k].addEventListener("click", function() {
@@ -50,6 +50,7 @@ function UpdateBlog() {
 
     function closeEditBlog(blogNum) {
         setDisplayNone(updateBlogFormContainers[blogNum]);
+        setDisplayBlock(blogTitles[blogNum]);
         setDisplayBlock(blogContents[blogNum]);
         setDisplayInline(editBlogBtns[blogNum]);
         setDisplayNone(cancelEditBlogBtns[blogNum]);
@@ -57,6 +58,7 @@ function UpdateBlog() {
 
     function openEditBlog(blogNum) {
         setDisplayBlock(updateBlogFormContainers[blogNum]);
+        setDisplayNone(blogTitles[blogNum]);
         setDisplayNone(blogContents[blogNum]);
         setDisplayNone(editBlogBtns[blogNum]);
         setDisplayInline(cancelEditBlogBtns[blogNum]);

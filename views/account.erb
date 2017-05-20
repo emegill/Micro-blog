@@ -95,6 +95,9 @@
         <div class="blog-list__blog-title">
             <%= blog.title %>
         </div>
+        <div class="blog-list__blog-content">
+            <%= blog.content %>
+        </div>
 
         <% if @this_user %>
             <div class="update-blog-form__container">
@@ -124,10 +127,6 @@
                 </form>
             </div>
         <% end %>
-
-        <div class="blog-list__blog-content">
-            <%= blog.content %>
-        </div>
 
     <% end %>
 </div>
