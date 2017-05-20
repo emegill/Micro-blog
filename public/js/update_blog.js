@@ -9,10 +9,12 @@ function setDisplayBlock(elem) {
     elem.style.display = "block";
 }
 
+function setDisplayInline(elem) {
+    elem.style.display = "inline";
+}
 
 function DeleteBlog() {
     var delBlogModals = document.getElementsByClassName('delete-blog-modal');
-    // var delBlogForms = document.getElementsByClassName('delete-blog-form');
     var delBlogBtns = document.getElementsByClassName('blog-list__del-blog-btn');
     var cancelBtns = document.getElementsByClassName('delete-blog__cancel-btn');
 
@@ -25,9 +27,6 @@ function DeleteBlog() {
             setDisplayNone(delBlogModals[k]);
         });
     }
-    // for (let k = 0; k < cancelBtns.length; k++) {
-    //
-    // }
 }
 
 
@@ -64,6 +63,4 @@ function UpdateBlog() {
         setDisplayNone(blogContents[blogNum]);
         editBlogBtns[blogNum].innerHTML = "Close edit"
     }
-
-
 }

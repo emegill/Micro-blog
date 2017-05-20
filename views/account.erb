@@ -7,10 +7,58 @@
 </div>
 
 <% if @this_user %>
-
-    <div class="delete-user-btn">
-        Delete account
+    <div class="user-details__container">
+        <h3>Account details</h3>
+        <div class="user-details__full-name">
+            Name: <%= "#{@user.fname} #{@user.lname}" %>
+        </div>
+        <div class="user-details__email">
+            Email address: <%= @user.email %>
+        </div>
     </div>
+
+
+    <div class="edit-user-modal">
+        <form action="/edit_user" method="post">
+
+            <div class="edit-user-modal__attribute edit-user__username">
+                Username:
+                <input type="text" name="username" value="<%= @user.username %>">
+            </div>
+            <div class="edit-user-modal__attribute edit-user__fname">
+                First name:
+                <input type="text" name="fname" value="<%= @user.fname %>">
+            </div>
+            <div class="edit-user-modal__attribute edit-user__lname">
+                Last name:
+                <input type="text" name="lname" value="<%= @user.lname %>">
+            </div>
+            <div class="edit-user-modal__attribute edit-user__email">
+                Email address:
+                <input type="text" name="email" value="<%= @user.email %>">
+            </div>
+            <div class="edit-user-modal__enter-password">
+                Enter current password to change details:
+                <input class="current-password-input-field" type="password" name="password_check" placeholder="Enter password">
+                <button type="button" class="show-edit-password-btn">Change password</button>
+            </div>
+
+            <div class="edit-password__container">
+                New password:
+                <input class="new-password-input-field" type="password" name="password_new" placeholder="Enter new password">
+                <input type="password" name="password" placeholder="Confirm password">
+            </div>
+
+            <input type="submit" value="Confirm edit">
+            <button type="button" class="edit-user__cancel-btn">Cancel</button>
+        </form>
+    </div>
+    <button class="edit-user-btn">
+        Edit details
+    </button>
+    <button class="delete-user-btn">
+        Delete account
+    </button>
     <div class="delete-user-modal">
         <p>
             Are you sure you wish to delete your account? This will delete your blog posts and cannot be undone.
