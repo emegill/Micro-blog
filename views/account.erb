@@ -38,12 +38,20 @@
                 <input type="text" name="email" value="<%= @user.email %>">
             </div>
             <div class="edit-user-modal__enter-password">
-                Enter password to change details:
-                <input type="password" name="password" placeholder="Enter password">
+                Enter current password to change details:
+                <input class="current-password-input-field" type="password" name="password_check" placeholder="Enter password">
+                <button type="button" class="show-edit-password-btn">Change password</button>
             </div>
-            <input type="submit" value="Confirm">
-        </form>
 
+            <div class="edit-password__container">
+                New password:
+                <input class="new-password-input-field" type="password" name="password_new" placeholder="Enter new password">
+                <input type="password" name="password" placeholder="Confirm password">
+            </div>
+
+            <input type="submit" value="Confirm edit">
+            <button type="button" class="edit-user__cancel-btn">Cancel</button>
+        </form>
     </div>
     <button class="edit-user-btn">
         Edit details

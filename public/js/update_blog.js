@@ -9,6 +9,9 @@ function setDisplayBlock(elem) {
     elem.style.display = "block";
 }
 
+function setDisplayInline(elem) {
+    elem.style.display = "inline";
+}
 
 function DeleteBlog() {
     var delBlogModals = document.getElementsByClassName('delete-blog-modal');

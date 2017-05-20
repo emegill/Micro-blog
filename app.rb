@@ -48,11 +48,24 @@ end
 
 post '/edit_user' do
     user = User.find(session[:user_id])
-    if user.password == params[:password]
+    pw_check = false
+    if params[:password_check] == user.password
+        pw_check = true
+    end
+    params.delete(:password_check)
+    params.delete(:captures)
+    if params[:password_new]
+        if params[:password_new] == params[:password]
+            params.delete(:password_new)
+        else
+            pw_check = false
+        end
+    else
         params.delete(:password)
-        params.delete(:captures)
+    end
+    if pw_check
         params.each do |symb, val|
-            user.update(symb => val)
+            user.update(symb => val) if val.length > 0
         end
     end
     redirect "/account/#{user.id}"
