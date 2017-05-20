@@ -96,39 +96,34 @@
             <%= blog.title %>
         </div>
 
+        <% if @this_user %>
+            <div class="update-blog-form__container">
 
-            <% if @this_user %>
-                <div class="blog-list__edit-blog-btn">Edit blog</div>
-                <div class="update-blog-form__container">
+                <form id="update-blog-<%= blog.id %>-form" action="/update_blog" method="post">
 
-                    <form id="update-blog-<%= blog.id %>-form" action="/update_blog" method="post">
+                    <input type="text" name="title" value="<%= blog.title %>">
 
-                        <input type="text" name="title" value="<%= blog.title %>">
+                    <input type="hidden" name="user_id" value="<%= @user.id %>">
+                    <input type="hidden" name="blog_id" value="<%= blog.id %>">
 
-                        <input type="hidden" name="user_id" value="<%= @user.id %>">
-                        <input type="hidden" name="blog_id" value="<%= blog.id %>">
+                    <div class="new-blog-form__content-input">
+                        <textarea form="update-blog-<%= blog.id %>-form" name="content" maxlength="150" rows="3" cols="60"><%= blog.content %></textarea>
+                    </div>
 
-                        <div class="new-blog-form__content-input">
-                            <textarea form="update-blog-<%= blog.id %>-form" name="content" maxlength="150" rows="3" cols="60"><%= blog.content %></textarea>
-                        </div>
-
-                        <input type="submit">
-                    </form>
-                </div>
-
-                <div class="blog-list__del-blog-btn">
-                    Delete blog
-                </div>
-                <div class="delete-blog-modal">
-                    <p>Are you sure you wish to delete this blog?</p>
-                    <form id="delete-blog-form" action="/delete_blog/<%= blog.id %>" method="post">
-                        <input type="submit" value="Yes, delete">
-                    </form>
-                    <button class="delete-blog__cancel-btn">Cancel</button>
-                </div>
-
-            <% end %>
-
+                    <input type="submit">
+                    <button type="button" class="blog-list__cancel-edit-blog-btn">Cancel</button>
+                </form>
+            </div>
+            <button class="blog-list__edit-blog-btn">Edit</button>
+            <button class="blog-list__del-blog-btn">Delete blog</button>
+            <div class="delete-blog-modal">
+                <p>Are you sure you wish to delete this blog?</p>
+                <form id="delete-blog-form" action="/delete_blog/<%= blog.id %>" method="post">
+                    <input type="submit" value="Yes, delete">
+                    <button type="button" class="delete-blog__cancel-btn">Cancel</button>
+                </form>
+            </div>
+        <% end %>
 
         <div class="blog-list__blog-content">
             <%= blog.content %>

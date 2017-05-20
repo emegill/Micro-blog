@@ -1,13 +1,17 @@
-.blog-list__edit-blog-btn {
-    &:hover {
-        cursor: pointer;
-    }
-}
+// .blog-list__edit-blog-btn {
+//     &:hover {
+//         cursor: pointer;
+//     }
+// }
+//
+// .blog-list__del-blog-btn {
+//     &:hover {
+//         cursor: pointer;
+//     }
+// }
 
-.blog-list__del-blog-btn {
-    &:hover {
-        cursor: pointer;
-    }
+.blog-list__cancel-edit-blog-btn {
+    display: none;
 }
 
 .update-blog-form__container {
