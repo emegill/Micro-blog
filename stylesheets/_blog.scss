@@ -21,3 +21,13 @@
 .delete-blog-modal {
     display: none;
 }
+
+.favorited-blog-heart {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url('/images/red-heart.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
