@@ -108,16 +108,14 @@ post '/update_blog' do
     id = params[:blog_id]
     p params
     blog = Blog.find(id)
-    blog.title = params[:title]
-    blog.content = params[:content]
-
-    blog.save
-    redirect "/account/#{params[:user_id]}"
+    blog.update(title: params[:title])
+    blog.update(content: params[:content])
+    redirect params[:redirect_to]
 end
 
-post '/delete_blog/:id' do
+post '/destroy_blog/:id' do
     Blog.destroy(params[:id])
-    redirect "/account/#{session[:user_id]}"
+    redirect params[:redirect_to]
 end
 
 get '/blogs' do
