@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170521222518) do
+ActiveRecord::Schema.define(version: 20170521222717) do
 
   create_table "blogs", force: :cascade do |t|
     t.string "title"
@@ -21,6 +21,12 @@ ActiveRecord::Schema.define(version: 20170521222518) do
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "blog_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "other_user_id"
+    t.integer "status"
   end
 
   create_table "reblogs", force: :cascade do |t|
