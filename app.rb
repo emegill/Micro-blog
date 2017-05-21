@@ -114,6 +114,16 @@ post '/delete_blog/:id' do
 end
 
 get '/blogs' do
+    if session[:user_id]
+        @user = User.find(session[:user_id])
+        @favorites_ids = []
+        @favorites_blog_ids = []
+        @user.favorites.each do |favorite|
+            @favorites_ids.push(favorite.id)
+            @favorites_blog_ids.push(favorite.blog_id)
+        end
+        p @favorites_blog_ids
+    end
     @blogs = Blog.all.reverse
     if @blogs.length < 10
         @top_10 = @blogs
@@ -121,4 +131,14 @@ get '/blogs' do
         @top_10 = @blogs[0, 10]
     end
     erb :blogs
+end
+
+post '/create_favorite' do
+    Favorite.create(params[:favorite])
+    redirect "/account/#{session[:user_id]}"
+end
+
+post '/destroy_favorite' do
+    Favorite.destroy(params[:favorite_id])
+    redirect "/account/#{session[:user_id]}"
 end
