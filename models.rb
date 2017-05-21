@@ -8,7 +8,7 @@ end
 class Blog < ActiveRecord::Base
     belongs_to :user
     has_many :favorites, dependent: :destroy
-    has_many :reblogs
+    has_one :reblog
     # has_many :comments, dependent: :destroy
 end
 
