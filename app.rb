@@ -140,11 +140,23 @@ end
 post '/create_favorite' do
     Favorite.create(params[:favorite])
     redirect params[:redirect_to]
-    # redirect "/account/#{session[:user_id]}"
 end
 
 post '/destroy_favorite' do
     Favorite.destroy(params[:favorite_id])
     redirect params[:redirect_to]
-    # redirect "/account/#{session[:user_id]}"
 end
+
+get '/favorites/:user_id' do
+    redirect '/' if session[:user_id] != params[:user_id].to_f
+    @user = User.find(params[:user_id])
+    erb :favorites
+end
+
+
+
+
+
+
+
+#

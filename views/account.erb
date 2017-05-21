@@ -69,8 +69,8 @@
         <button class="delete-user__cancel-btn">Cancel</button>
     </div>
 
-    <h2>Post new blog:</h2>
     <div class="new-blog-form__container">
+        <h2>Post new blog:</h2>
         <form id="new-blog-form" action="/create_blog" method="post">
 
             <input type="text" name="[blog]title" placeholder="Blog title">
@@ -84,6 +84,8 @@
             <input type="submit">
         </form>
     </div>
+
+<a href="/favorites/<%= @user.id %>">View Favorites</a>
 
 <% end %>
 
