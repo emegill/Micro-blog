@@ -95,7 +95,6 @@
     <% @blogs.each do |blog| %>
 
         <div class="blog-list__item-container">
-
             <div class="blog-list__blog-title">
                 <%= blog.title %>
             </div>
@@ -119,6 +118,18 @@
                         <input type="hidden" name="[favorite]blog_id" value="<%= blog.id %>">
                         <input type="hidden" name="redirect_to" value="/account/<%= @user.id %>">
                         <input class="favorite-btn" type="submit" value="Favorite">
+                    </form>
+                <% end %>
+
+                <% if blog.user_id != @viewing_user.id %>
+                    <form action="/create_reblog" method="post">
+                        <input type="hidden" name="[reblog]original_blog_id" value="<%= blog.id %>">
+                        <input type="hidden" name="[reblog]user_id" value="<%= @viewing_user.id %>">
+                        <input type="hidden" name="[blog]user_id" value="<%= @viewing_user.id %>">
+                        <input type="hidden" name="[blog]title" value="<%= blog.title %>">
+                        <input type="hidden" name="[blog]content" value="<%= blog.content %>">
+                        <input type="hidden" name="redirect_to" value="/account/<%= @viewing_user.id%>">
+                        <input type="submit" value="Reblog">
                     </form>
                 <% end %>
 
