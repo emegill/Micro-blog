@@ -1,14 +1,10 @@
-// .blog-list__edit-blog-btn {
-//     &:hover {
-//         cursor: pointer;
-//     }
-// }
-//
-// .blog-list__del-blog-btn {
-//     &:hover {
-//         cursor: pointer;
-//     }
-// }
+.blog-list__item-container {
+    margin: 10px auto;
+    border: 1px solid black;
+    width: 40vw;
+    min-width: 250px;
+    max-width: 420px;
+}
 
 .blog-list__cancel-edit-blog-btn {
     display: none;
@@ -16,6 +12,10 @@
 
 .update-blog-form__container {
     display: none;
+}
+
+.update-blog-form__textarea {
+    width: 100%;
 }
 
 .delete-blog-modal {

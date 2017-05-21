@@ -1,10 +1,15 @@
+window.onscroll = fixNav;
 
-window.onscroll = myFunction;
+var mainContainer = document.getElementsByClassName("main-container")[0];
 
-function myFunction() {
-    if (document.body.scrollTop > 275 || document.documentElement.scrollTop > 275){
-        document.getElementsByClassName("navBar")[0].className = "navMove";
+function fixNav() {
+    // console.log(document.body.scrollTop);
+    if (document.body.scrollTop > 275){
+        document.getElementsByClassName("navBar")[0].classList.add("navMove");
+        mainContainer.classList.add("fixed-nav-container-margin");
     } else {
-        document.getElementsByClassName("navMove")[0].className = "navBar";
+        document.getElementsByClassName("navMove")[0].classList.remove("navMove");
+        mainContainer.classList.remove("fixed-nav-container-margin");
     }
+
 }

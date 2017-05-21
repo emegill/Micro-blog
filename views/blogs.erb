@@ -1,44 +1,48 @@
 <% @top_10.each do |blog| %>
 
-    <div class="blog-list__blog-author">
-        <% author = User.find(blog.user_id) %>
-        <a href="/account/<%= author.id %>"><%= author.username %></a>
-    </div>
-    <div class="blog-list__blog-title">
-        <%= blog.title %>
-    </div>
-    <div class="blog-list__blog-content">
-        <%= blog.content %>
-    </div>
-
-    <% if author.id == session[:user_id] %>
-        <div class="update-blog-form__container">
-
-            <form id="update-blog-<%= blog.id %>-form" action="/update_blog" method="post">
-
-                <input type="text" name="title" value="<%= blog.title %>">
-
-                <input type="hidden" name="user_id" value="<%= author.id %>">
-                <input type="hidden" name="blog_id" value="<%= blog.id %>">
-
-                <div class="new-blog-form__content-input">
-                    <textarea form="update-blog-<%= blog.id %>-form" name="content" maxlength="150" rows="3" cols="60"><%= blog.content %></textarea>
-                </div>
-
-                <input type="submit">
-                <button type="button" class="blog-list__cancel-edit-blog-btn">Cancel</button>
-            </form>
+    <div class="blog-list__item-container">
+        <div class="blog-list__blog-author">
+            <% author = User.find(blog.user_id) %>
+            <a href="/account/<%= author.id %>"><%= author.username %></a>
         </div>
-        <button class="blog-list__edit-blog-btn">Edit</button>
-        <button class="blog-list__del-blog-btn">Delete blog</button>
-        <div class="delete-blog-modal">
-            <p>Are you sure you wish to delete this blog?</p>
-            <form id="delete-blog-form" action="/delete_blog/<%= blog.id %>" method="post">
-                <input type="submit" value="Yes, delete">
-                <button type="button" class="delete-blog__cancel-btn">Cancel</button>
-            </form>
+        <div class="blog-list__blog-title">
+            <%= blog.title %>
         </div>
-    <% end %>
+        <div class="blog-list__blog-content">
+            <%= blog.content %>
+        </div>
+
+        <% if author.id == session[:user_id] %>
+            <div class="update-blog-form__container">
+
+                <form id="update-blog-<%= blog.id %>-form" action="/update_blog" method="post">
+
+                    <input type="text" name="title" value="<%= blog.title %>">
+
+                    <input type="hidden" name="user_id" value="<%= author.id %>">
+                    <input type="hidden" name="blog_id" value="<%= blog.id %>">
+
+                    <div class="new-blog-form__content-input">
+                        <textarea form="update-blog-<%= blog.id %>-form" class="update-blog-form__textarea" name="content" maxlength="150" rows="3" cols="60"><%= blog.content %></textarea>
+                    </div>
+
+                    <input type="submit">
+                    <button type="button" class="blog-list__cancel-edit-blog-btn">Cancel</button>
+                </form>
+            </div>
+            <button class="blog-list__edit-blog-btn">Edit</button>
+            <button class="blog-list__del-blog-btn">Delete blog</button>
+            <div class="delete-blog-modal">
+                <p>Are you sure you wish to delete this blog?</p>
+                <form id="delete-blog-form" action="/delete_blog/<%= blog.id %>" method="post">
+                    <input type="submit" value="Yes, delete">
+                    <button type="button" class="delete-blog__cancel-btn">Cancel</button>
+                </form>
+            </div>
+        <% end %>
+
+    </div>
+
 <% end %>
 
 <script type="text/javascript" src="/js/update_blog.js"></script>
