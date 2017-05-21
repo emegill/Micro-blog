@@ -153,7 +153,11 @@ get '/favorites/:user_id' do
     erb :favorites
 end
 
-
+post '/create_reblog' do
+    Reblog.create(params[:reblog])
+    Blog.create(params[:blog])
+    redirect params[:redirect_to]
+end
 
 
 
