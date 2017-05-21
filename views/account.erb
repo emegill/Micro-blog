@@ -121,18 +121,6 @@
                     </form>
                 <% end %>
 
-                <% if blog.user_id != @viewing_user.id %>
-                    <form action="/create_reblog" method="post">
-                        <input type="hidden" name="[reblog]original_blog_id" value="<%= blog.id %>">
-                        <input type="hidden" name="[reblog]user_id" value="<%= @viewing_user.id %>">
-                        <input type="hidden" name="[blog]user_id" value="<%= @viewing_user.id %>">
-                        <input type="hidden" name="[blog]title" value="<%= blog.title %>">
-                        <input type="hidden" name="[blog]content" value="<%= blog.content %>">
-                        <input type="hidden" name="redirect_to" value="/account/<%= @viewing_user.id%>">
-                        <input type="submit" value="Reblog">
-                    </form>
-                <% end %>
-
                 <% if @this_user %>
                     <div class="update-blog-form__container">
 
@@ -162,6 +150,16 @@
                             <button type="button" class="delete-blog__cancel-btn">Cancel</button>
                         </form>
                     </div>
+                <% else %>
+                    <form action="/create_reblog" method="post">
+                        <input type="hidden" name="[reblog]original_blog_id" value="<%= blog.id %>">
+                        <input type="hidden" name="[reblog]user_id" value="<%= @viewing_user.id %>">
+                        <input type="hidden" name="[blog]user_id" value="<%= @viewing_user.id %>">
+                        <input type="hidden" name="[blog]title" value="<%= blog.title %>">
+                        <input type="hidden" name="[blog]content" value="<%= blog.content %>">
+                        <input type="hidden" name="redirect_to" value="/account/<%= @viewing_user.id%>">
+                        <input type="submit" value="Reblog">
+                    </form>
                 <% end %>
             <% end %>
         </div>
