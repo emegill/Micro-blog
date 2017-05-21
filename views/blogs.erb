@@ -20,12 +20,15 @@
                 </div>
                 <form action="/destroy_favorite" method="post">
                     <input type="hidden" name="favorite_id" value="<%= favorite.id %>">
+                    <input type="hidden" name="redirect_to" value="/blogs">
                     <input class="unfavorite-btn" type="submit" value="Unfavorite">
+
                 </form>
             <% else %>
                 <form action="/create_favorite" method="post">
                     <input type="hidden" name="[favorite]user_id" value="<%= session[:user_id] %>">
                     <input type="hidden" name="[favorite]blog_id" value="<%= blog.id %>">
+                    <input type="hidden" name="redirect_to" value="/blogs">
                     <input class="favorite-btn" type="submit" value="Favorite">
                 </form>
             <% end %>

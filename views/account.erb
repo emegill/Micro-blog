@@ -101,33 +101,55 @@
                 <%= blog.content %>
             </div>
 
-            <% if @this_user %>
-                <div class="update-blog-form__container">
+            <% if @viewing_user %>
 
-                    <form id="update-blog-<%= blog.id %>-form" action="/update_blog" method="post">
-
-                        <input type="text" name="title" value="<%= blog.title %>">
-
-                        <input type="hidden" name="user_id" value="<%= @user.id %>">
-                        <input type="hidden" name="blog_id" value="<%= blog.id %>">
-
-                        <div class="new-blog-form__content-input">
-                            <textarea form="update-blog-<%= blog.id %>-form" class="update-blog-form__textarea" name="content" maxlength="150" rows="3" cols="60"><%= blog.content %></textarea>
-                        </div>
-
-                        <input type="submit">
-                        <button type="button" class="blog-list__cancel-edit-blog-btn">Cancel</button>
+                <% if @favorites_blog_ids.include? blog.id %>
+                    <% favorite = Favorite.where(user_id: session[:user_id], blog_id: blog.id)[0] %>
+                    <div class="favorited-blog-heart">
+                        [insert heart or something]
+                    </div>
+                    <form action="/destroy_favorite" method="post">
+                        <input type="hidden" name="favorite_id" value="<%= favorite.id %>">
+                        <input type="hidden" name="redirect_to" value="/account/<%= @user.id %>">
+                        <input class="unfavorite-btn" type="submit" value="Unfavorite">
                     </form>
-                </div>
-                <button class="blog-list__edit-blog-btn">Edit</button>
-                <button class="blog-list__del-blog-btn">Delete blog</button>
-                <div class="delete-blog-modal">
-                    <p>Are you sure you wish to delete this blog?</p>
-                    <form id="delete-blog-form" action="/delete_blog/<%= blog.id %>" method="post">
-                        <input type="submit" value="Yes, delete">
-                        <button type="button" class="delete-blog__cancel-btn">Cancel</button>
+                <% else %>
+                    <form action="/create_favorite" method="post">
+                        <input type="hidden" name="[favorite]user_id" value="<%= session[:user_id] %>">
+                        <input type="hidden" name="[favorite]blog_id" value="<%= blog.id %>">
+                        <input type="hidden" name="redirect_to" value="/account/<%= @user.id %>">
+                        <input class="favorite-btn" type="submit" value="Favorite">
                     </form>
-                </div>
+                <% end %>
+
+                <% if @this_user %>
+                    <div class="update-blog-form__container">
+
+                        <form id="update-blog-<%= blog.id %>-form" action="/update_blog" method="post">
+
+                            <input type="text" name="title" value="<%= blog.title %>">
+
+                            <input type="hidden" name="user_id" value="<%= @user.id %>">
+                            <input type="hidden" name="blog_id" value="<%= blog.id %>">
+
+                            <div class="new-blog-form__content-input">
+                                <textarea form="update-blog-<%= blog.id %>-form" class="update-blog-form__textarea" name="content" maxlength="150" rows="3" cols="60"><%= blog.content %></textarea>
+                            </div>
+
+                            <input type="submit">
+                            <button type="button" class="blog-list__cancel-edit-blog-btn">Cancel</button>
+                        </form>
+                    </div>
+                    <button class="blog-list__edit-blog-btn">Edit</button>
+                    <button class="blog-list__del-blog-btn">Delete blog</button>
+                    <div class="delete-blog-modal">
+                        <p>Are you sure you wish to delete this blog?</p>
+                        <form id="delete-blog-form" action="/delete_blog/<%= blog.id %>" method="post">
+                            <input type="submit" value="Yes, delete">
+                            <button type="button" class="delete-blog__cancel-btn">Cancel</button>
+                        </form>
+                    </div>
+                <% end %>
             <% end %>
         </div>
     <% end %>

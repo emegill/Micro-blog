@@ -38,10 +38,17 @@ end
 get '/account/:id' do
     @user = User.find(params[:id])
     @blogs = @user.blogs.reverse
-    if session[:user_id] == @user.id
-        @this_user = true
-    else
-        @this_user = false
+    if session[:user_id]
+        if session[:user_id] == @user.id
+            @this_user = true
+        end
+        @viewing_user = User.find(session[:user_id])
+        @favorites_ids = []
+        @favorites_blog_ids = []
+        @viewing_user.favorites.each do |favorite|
+            @favorites_ids.push(favorite.id)
+            @favorites_blog_ids.push(favorite.blog_id)
+        end
     end
     erb :account
 end
@@ -122,7 +129,6 @@ get '/blogs' do
             @favorites_ids.push(favorite.id)
             @favorites_blog_ids.push(favorite.blog_id)
         end
-        p @favorites_blog_ids
     end
     @blogs = Blog.all.reverse
     if @blogs.length < 10
@@ -135,10 +141,12 @@ end
 
 post '/create_favorite' do
     Favorite.create(params[:favorite])
-    redirect "/account/#{session[:user_id]}"
+    redirect params[:redirect_to]
+    # redirect "/account/#{session[:user_id]}"
 end
 
 post '/destroy_favorite' do
     Favorite.destroy(params[:favorite_id])
-    redirect "/account/#{session[:user_id]}"
+    redirect params[:redirect_to]
+    # redirect "/account/#{session[:user_id]}"
 end
