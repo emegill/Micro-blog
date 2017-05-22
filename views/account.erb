@@ -23,7 +23,7 @@
         <form action="/edit_user" method="post">
             <div class="edit-user-modal__attribute edit-user__username">
                 Username:
-                <input type="text" name="username" value="<%= @user.username %>">
+                <input class="accountbackground-color" type="text" name="username" value="<%= @user.username %>">
             </div>
             <div class="edit-user-modal__attribute edit-user__fname">
                 First name:
@@ -38,17 +38,17 @@
                 <input type="text" name="email" value="<%= @user.email %>">
             </div>
             <div class="edit-user-modal__enter-password">
-                Enter current password to change details:
+                Enter current password:
                 <input class="current-password-input-field" type="password" name="password_check" placeholder="Enter password">
-                <button type="button" class="show-edit-password-btn">Change password</button>
+                <button type="button" class="show-edit-password-btn class=acct_submit">Change password</button>
             </div>
             <div class="edit-password__container">
                 New password:
                 <input class="new-password-input-field" type="password" name="password_new" placeholder="Enter new password">
                 <input type="password" name="password" placeholder="Confirm password">
             </div>
-            <input type="submit" value="Confirm edit">
-            <button type="button" class="edit-user__cancel-btn">Cancel</button>
+            <input class="btn_color" type="submit" value="Confirm edit">
+            <button type="button" class="edit-user__cancel-btn class=acct_submit">Cancel</button>
         </form>
     </div>
     <button class="edit-user-btn">
@@ -58,17 +58,17 @@
         Delete account
     </button>
     <div class="delete-user-modal">
-        <p>
+        <p class="text_edit">
             Are you sure you wish to delete your account? This will delete your blog posts and cannot be undone.
         </p>
         <form action="/delete_user" method="post">
-            <input type="submit" value="Yes, delete account">
+            <input class="btn_color" type="submit" value="Yes, delete account">
         </form>
         <button class="delete-user__cancel-btn">Cancel</button>
     </div>
 
     <div class="new-blog-form__container">
-        <h3>Post new blog:</h3>
+        <h3 class="account_text2">Post new blog:</h3>
         <form id="new-blog-form" action="/create_blog" method="post">
 
             <input class="input_color2" type="text" name="[blog]title" placeholder="Blog title">
@@ -235,7 +235,7 @@
 <% end %>
 
 <div class="blog-list__container">
-    <h2><%= @this_user? "My" : "#{@user.fname}'s" %> Blogs</h2>
+    <h2 class="acctlink"><%= @this_user? "My" : "#{@user.fname}'s" %> Blogs</h2>
 
     <% @blogs.each do |blog| %>
 

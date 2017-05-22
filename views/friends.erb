@@ -1,9 +1,10 @@
-<h1>My friends</h1>
+<div class="friend_container">
+<h1 class="friends_font">My friends</h1>
 
-<h2>Friend requests</h2>
+<h2 class="friends_font2">Friend requests</h2>
 
 <% if @pending_requests_user_ids.length == 0 %>
-    <p>No requests pending.</p>
+    <p class="request_text">No requests pending.</p>
 <% else %>
     <% @pending_requests_user_ids.each do |id| %>
         <% potential_friend = User.find(id) %>
@@ -26,7 +27,7 @@
     <% end %>
 <% end %>
 
-<h2>Friend list</h2>
+<h2 class="friends_font">Friend list</h2>
 
 <ul class="friends-list">
     <% @friends.each do |friend| %>
@@ -36,4 +37,5 @@
 
 
     <% end %>
+</div>
 </ul>

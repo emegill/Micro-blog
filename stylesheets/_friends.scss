@@ -1,3 +1,44 @@
 .friends-list {
     list-style-type: none;
 }
+
+.friends_font {
+  color: #487B8C;
+  padding: 5px;
+  margin-top: 5px;
+  font-family: "futura";
+  list-style: none;
+  text-shadow: 2px 2px #ff847c;
+  text-align: center;
+  font-size: 30px;
+}
+
+.friends_font2 {
+  color: #487B8C;
+  padding: 5px;
+  margin-top: 5px;
+  font-family: "futura";
+  list-style: none;
+  text-shadow: 2px 2px #ff847c;
+  text-align: center;
+  font-size: 30px;
+}
+
+.friend_container {
+  margin: 30px auto;
+    border: 2px solid black;
+    width: 40vw;
+    min-width: 250px;
+    max-width: 420px;
+    background-color: #EEE6E0;
+    border-radius: 5%;
+    text-align: center;
+}
+
+.request_text {
+  color: #487B8C;
+font-family: "futura";
+list-style: none;
+text-align: center;
+font-size: 18px;
+}
