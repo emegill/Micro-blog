@@ -1,4 +1,7 @@
-<div class="welcome"> Welcome back Sherpa!</div>
+<% if @this_user %>
+    <div class="welcome"> Welcome back Sherpa!</div>
+<% end %>
+
 <div class="account_user_box">
     <div class="user-info__container">
         <h1 class="user-info__full-name">
@@ -90,7 +93,8 @@
     <div class="acctlink"><a href="/friends">View Friends</a></div>
     <div class="friends-blogs__container">
 
-        <h2 class="acctlink">Friends' blogs</h2>
+
+        <h2 class="blog-container__heading">Friends' Blogs</h2>
 
         <% @friends_blog_ids.each do |id| %>
             <% blog = Blog.find(id) %>
@@ -228,7 +232,8 @@
 <% end %>
 
 <div class="blog-list__container">
-    <h2 class="acctlink"><%= @this_user? "My" : "#{@user.fname}'s" %> Blogs</h2>
+
+    <h2 class="blog-container__heading"><%= @this_user? "My" : "#{@user.fname}'s" %> Blogs</h2>
 
     <% @blogs.each do |blog| %>
 
