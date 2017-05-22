@@ -21,7 +21,6 @@
 
     <div class="edit-user-modal">
         <form action="/edit_user" method="post">
-
             <div class="edit-user-modal__attribute edit-user__username">
                 Username:
                 <input type="text" name="username" value="<%= @user.username %>">
@@ -43,13 +42,11 @@
                 <input class="current-password-input-field" type="password" name="password_check" placeholder="Enter password">
                 <button type="button" class="show-edit-password-btn">Change password</button>
             </div>
-
             <div class="edit-password__container">
                 New password:
                 <input class="new-password-input-field" type="password" name="password_new" placeholder="Enter new password">
                 <input type="password" name="password" placeholder="Confirm password">
             </div>
-
             <input type="submit" value="Confirm edit">
             <button type="button" class="edit-user__cancel-btn">Cancel</button>
         </form>
@@ -70,9 +67,10 @@
         <button class="delete-user__cancel-btn">Cancel</button>
     </div>
 
-
     <h2 class="new_post">Post new blog:</h2>
+
     <div class="new-blog-form__container">
+        <h2>Post new blog:</h2>
         <form id="new-blog-form" action="/create_blog" method="post">
 
             <input class="input_color2" type="text" name="[blog]title" placeholder="Blog title">
@@ -87,6 +85,73 @@
         </form>
     </div>
 </div>
+
+
+    <a href="/favorites/<%= @user.id %>">View Favorites</a>
+
+<% elsif @viewing_user %>
+    <% friendship_1 = Friendship.where(user_id: @viewing_user.id, other_user_id: @user.id)%>
+    <% friendship_2 = Friendship.where(user_id: @user.id, other_user_id: @viewing_user.id)%>
+
+    <% if friendship_1.length > 0 %>
+        <% friendship = friendship_1[0] %>
+        <% friendship_user_id = @viewing_user.id %>
+        <% friendship_other_user_id = @user.id %>
+    <% elsif friendship_2.length > 0 %>
+        <% friendship = friendship_2[0] %>
+        <% friendship_recipient = true %>
+        <% friendship_user_id = @user.id %>
+        <% friendship_other_user_id = @viewing_user.id %>
+    <% end %>
+
+    <% if friendship %>
+        <% if friendship.status == 1 %>
+
+            <form action="/destroy_friendship" method="post">
+                <input type="hidden" name="[friendship]user_id" value="<%= friendship_user_id %>">
+                <input type="hidden" name="[friendship]other_user_id" value="<%= friendship_other_user_id %>">
+                <input type="hidden" name="redirect_to" value="/account/<%= @user.id %>">
+                <input type="submit" value="Remove friend">
+            </form>
+
+        <% elsif friendship.status == 0 %>
+            <% if friendship_recipient %>
+                <div class="friend-request-pending-msg">
+                    <%= @user.fname %> has sent you a friend request.
+                </div>
+                <form action="/confirm_friendship" method="post">
+                    <input type="hidden" name="[friendship]user_id" value="<%= @user.id %>">
+                    <input type="hidden" name="[friendship]other_user_id" value="<%= @viewing_user.id %>">
+                    <input type="hidden" name="redirect_to" value="/account/<%= @user.id %>">
+                    <input type="submit" value="Accept friend request">
+                </form>
+                <form action="/destroy_friendship" method="post">
+                    <input type="hidden" name="[friendship]user_id" value="<%= friendship_user_id %>">
+                    <input type="hidden" name="[friendship]other_user_id" value="<%= friendship_other_user_id %>">
+                    <input type="hidden" name="redirect_to" value="/account/<%= @user.id %>">
+                    <input type="submit" value="Decline">
+                </form>
+
+            <% else %>
+                <div class="friend-request-pending-msg">
+                    Friend request pending.
+                </div>
+            <% end %>
+
+        <% end %>
+    <% else %>
+
+        <form action="/create_friendship" method="post">
+            <input type="hidden" name="[friendship]user_id" value="<%= @viewing_user.id %>">
+            <input type="hidden" name="[friendship]other_user_id" value="<%= @user.id %>">
+            <input type="hidden" name="[friendship]status" value="0">
+            <input type="hidden" name="redirect_to" value="/account/<%= @user.id %>">
+            <input type="submit" value="Send friend request">
+        </form>
+
+    <% end %>
+
+>>>>>>> 6146ed1d7eeff25e9657c6cdac2d3ce52373c31d
 <% end %>
 
 <div class="blog-list__container">
@@ -95,13 +160,17 @@
     <% @blogs.each do |blog| %>
 
         <div class="blog-list__item-container">
-
             <div class="blog-list__blog-title">
                 <%= blog.title %>
             </div>
             <div class="blog-list__blog-content">
                 <%= blog.content %>
             </div>
+
+            <% if blog.reblog %>
+                <% reblog_user = User.find(blog.reblog.user_id) %>
+                Reblogged from: <a href="/account/<%= reblog_user.id %>"><%= reblog_user.username %></a>
+            <% end %>
 
             <% if @viewing_user %>
 
@@ -151,6 +220,16 @@
                             <button type="button" class="delete-blog__cancel-btn">Cancel</button>
                         </form>
                     </div>
+                <% else %>
+                    <form action="/create_reblog" method="post">
+                        <input type="hidden" name="[reblog]blog_id" value="<%= Blog.last.id + 1 %>">
+                        <input type="hidden" name="[reblog]user_id" value="<%= @user.id %>">
+                        <input type="hidden" name="[blog]user_id" value="<%= @viewing_user.id %>">
+                        <input type="hidden" name="[blog]title" value="<%= blog.title %>">
+                        <input type="hidden" name="[blog]content" value="<%= blog.content %>">
+                        <input type="hidden" name="redirect_to" value="/account/<%= @viewing_user.id%>">
+                        <input type="submit" value="Reblog">
+                    </form>
                 <% end %>
             <% end %>
         </div>

@@ -38,6 +38,16 @@ end
 get '/account/:id' do
     @user = User.find(params[:id])
     @blogs = @user.blogs.reverse
+    @friends_user_ids = []
+    friendships_1 = Friendship.where(user_id: @user.id, status: 1)
+    friendships_2 = Friendship.where(other_user_id: @user.id, status: 1)
+    friendships_1.each do |ship|
+        @friends_user_ids.push(ship.other_user_id)
+    end
+    friendships_2.each do |ship|
+        @friends_user_ids.push(ship.user_id)
+    end
+
     if session[:user_id]
         if session[:user_id] == @user.id
             @this_user = true
@@ -49,6 +59,16 @@ get '/account/:id' do
             @favorites_ids.push(favorite.id)
             @favorites_blog_ids.push(favorite.blog_id)
         end
+        @viewing_user_friends_user_ids = []
+        friendships_1 = Friendship.where(user_id: @viewing_user.id, status: 1)
+        friendships_2 = Friendship.where(other_user_id: @viewing_user.id, status: 1)
+        friendships_1.each do |ship|
+            @friends_user_ids.push(ship.other_user_id)
+        end
+        friendships_2.each do |ship|
+            @friends_user_ids.push(ship.user_id)
+        end
+
     end
     erb :account
 end
@@ -140,11 +160,40 @@ end
 post '/create_favorite' do
     Favorite.create(params[:favorite])
     redirect params[:redirect_to]
-    # redirect "/account/#{session[:user_id]}"
 end
 
 post '/destroy_favorite' do
     Favorite.destroy(params[:favorite_id])
     redirect params[:redirect_to]
-    # redirect "/account/#{session[:user_id]}"
 end
+
+get '/favorites/:user_id' do
+    redirect '/' if session[:user_id] != params[:user_id].to_f
+    @user = User.find(params[:user_id])
+    erb :favorites
+end
+
+post '/create_reblog' do
+    Reblog.create(params[:reblog])
+    Blog.create(params[:blog])
+    redirect params[:redirect_to]
+end
+
+post '/create_friendship' do
+    Friendship.create(params[:friendship])
+    redirect params[:redirect_to]
+end
+
+post '/destroy_friendship' do
+    friendship = Friendship.where(params[:friendship])[0]
+    Friendship.destroy(friendship.id)
+    redirect params[:redirect_to]
+end
+
+post '/confirm_friendship' do
+    friendship = Friendship.where(params[:friendship])[0]
+    friendship.update(status: 1)
+    redirect params[:redirect_to]
+end
+
+#
