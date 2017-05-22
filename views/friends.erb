@@ -1,0 +1,39 @@
+<h1>My friends</h1>
+
+<h2>Friend requests</h2>
+
+<% if @pending_requests_user_ids.length == 0 %>
+    <p>No requests pending.</p>
+<% else %>
+    <% @pending_requests_user_ids.each do |id| %>
+        <% potential_friend = User.find(id) %>
+        <div class="friend-request-received">
+            <%= potential_friend.username %> has sent you a friend request.
+
+            <form action="/confirm_friendship" method="post">
+                <input type="hidden" name="[friendship]user_id" value="<%= potential_friend.id %>">
+                <input type="hidden" name="[friendship]other_user_id" value="<%= @user.id %>">
+                <input type="hidden" name="redirect_to" value="/friends">
+                <input type="submit" value="Accept friend request">
+            </form>
+            <form action="/destroy_friendship" method="post">
+                <input type="hidden" name="[friendship]user_id" value="<%= potential_friend.id %>">
+                <input type="hidden" name="[friendship]other_user_id" value="<%= @user.id %>">
+                <input type="hidden" name="redirect_to" value="/friends">
+                <input type="submit" value="Decline">
+            </form>
+        </div>
+    <% end %>
+<% end %>
+
+<h2>Friend list</h2>
+
+<ul class="friends-list">
+    <% @friends.each do |friend| %>
+        <li class="friends-list__item">
+            <a href="/account/<%= friend.id %>"><%= friend.username %></a>
+        </li>
+
+
+    <% end %>
+</ul>
