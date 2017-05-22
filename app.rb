@@ -69,6 +69,15 @@ get '/account/:id' do
             @friends_user_ids.push(ship.user_id)
         end
 
+        @friends_blogs = []
+        @friends_user_ids.each do |user_id|
+            @friends_blogs += Blog.where(user_id: user_id)
+        end
+        friends_blog_ids = []
+        @friends_blogs.each do |blog|
+            friends_blog_ids.push(blog.id)
+        end
+        @friends_blog_ids = friends_blog_ids.sort.reverse
     end
     erb :account
 end
