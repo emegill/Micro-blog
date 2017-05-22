@@ -53,21 +53,26 @@ get '/account/:id' do
             @this_user = true
         end
         @viewing_user = User.find(session[:user_id])
-        @favorites_ids = []
         @favorites_blog_ids = []
         @viewing_user.favorites.each do |favorite|
-            @favorites_ids.push(favorite.id)
             @favorites_blog_ids.push(favorite.blog_id)
         end
-        @viewing_user_friends_user_ids = []
-        friendships_1 = Friendship.where(user_id: @viewing_user.id, status: 1)
-        friendships_2 = Friendship.where(other_user_id: @viewing_user.id, status: 1)
+
+        friendships_1 = Friendship.where(user_id: @user.id)
+        friend_user_ids_1 = []
         friendships_1.each do |ship|
-            @friends_user_ids.push(ship.other_user_id)
+            if ship.status == 1
+                friend_user_ids_1.push(ship.other_user_id)
+            end
         end
+        friendships_2 = Friendship.where(other_user_id: @user.id)
+        friend_user_ids_2 = []
         friendships_2.each do |ship|
-            @friends_user_ids.push(ship.user_id)
+            if ship.status == 1
+                friend_user_ids_2.push(ship.user_id)
+            end
         end
+        @friends_user_ids = friend_user_ids_1 + friend_user_ids_2
 
         @friends_blogs = []
         @friends_user_ids.each do |user_id|
