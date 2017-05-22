@@ -167,9 +167,9 @@ post '/destroy_favorite' do
     redirect params[:redirect_to]
 end
 
-get '/favorites/:user_id' do
-    redirect '/' if session[:user_id] != params[:user_id].to_f
-    @user = User.find(params[:user_id])
+get '/favorites' do
+    redirect '/' if session[:user_id] == nil
+    @user = User.find(session[:user_id])
     erb :favorites
 end
 
@@ -194,6 +194,34 @@ post '/confirm_friendship' do
     friendship = Friendship.where(params[:friendship])[0]
     friendship.update(status: 1)
     redirect params[:redirect_to]
+end
+
+get '/friends' do
+    redirect '/' if session[:user_id] == nil
+    @user = User.find(session[:user_id])
+    friendships_1 = Friendship.where(user_id: @user.id)
+    friend_user_ids_1 = []
+    friendships_1.each do |ship|
+        if ship.status == 1
+            friend_user_ids_1.push(ship.other_user_id)
+        end
+    end
+    friendships_2 = Friendship.where(other_user_id: @user.id)
+    friend_user_ids_2 = []
+    @pending_requests_user_ids = []
+    friendships_2.each do |ship|
+        if ship.status == 1
+            friend_user_ids_2.push(ship.user_id)
+        elsif ship.status == 0
+            @pending_requests_user_ids.push(ship.user_id)
+        end
+    end
+    @friend_user_ids = friend_user_ids_1 + friend_user_ids_2
+    @friends = []
+    @friend_user_ids.each do |id|
+        @friends.push(User.find(id))
+    end
+    erb :friends
 end
 
 #

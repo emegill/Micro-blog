@@ -67,7 +67,7 @@
     </div>
 
     <div class="new-blog-form__container">
-        <h2>Post new blog:</h2>
+        <h3>Post new blog:</h3>
         <form id="new-blog-form" action="/create_blog" method="post">
 
             <input type="text" name="[blog]title" placeholder="Blog title">
@@ -82,7 +82,11 @@
         </form>
     </div>
 
-    <a href="/favorites/<%= @user.id %>">View Favorites</a>
+    <a href="/favorites">View Favorites</a>
+    <a href="/friends">View Friends</a>
+    <div class="friends-blogs__container">
+
+    </div>
 
 <% elsif @viewing_user %>
     <% friendship_1 = Friendship.where(user_id: @viewing_user.id, other_user_id: @user.id)%>
@@ -94,9 +98,9 @@
         <% friendship_other_user_id = @user.id %>
     <% elsif friendship_2.length > 0 %>
         <% friendship = friendship_2[0] %>
-        <% friendship_recipient = true %>
         <% friendship_user_id = @user.id %>
         <% friendship_other_user_id = @viewing_user.id %>
+        <% friendship_recipient = true %>
     <% end %>
 
     <% if friendship %>
@@ -121,8 +125,8 @@
                     <input type="submit" value="Accept friend request">
                 </form>
                 <form action="/destroy_friendship" method="post">
-                    <input type="hidden" name="[friendship]user_id" value="<%= friendship_user_id %>">
-                    <input type="hidden" name="[friendship]other_user_id" value="<%= friendship_other_user_id %>">
+                    <input type="hidden" name="[friendship]user_id" value="<%= @user.id %>">
+                    <input type="hidden" name="[friendship]other_user_id" value="<%= @viewing_user.id %>">
                     <input type="hidden" name="redirect_to" value="/account/<%= @user.id %>">
                     <input type="submit" value="Decline">
                 </form>
@@ -149,7 +153,7 @@
 <% end %>
 
 <div class="blog-list__container">
-    <h2><%= @user.fname %>'s Blogs</h2>
+    <h2><%= @this_user? "My" : "#{@user.fname}'s" %> Blogs</h2>
 
     <% @blogs.each do |blog| %>
 
