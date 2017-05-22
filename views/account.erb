@@ -87,7 +87,7 @@
 </div>
 
 
-    <a href="/favorites/<%= @user.id %>">View Favorites</a>
+    <div class="acctlink"><a href="/favorites/<%= @user.id %>">View Favorites</a></div>
 
 <% elsif @viewing_user %>
     <% friendship_1 = Friendship.where(user_id: @viewing_user.id, other_user_id: @user.id)%>
@@ -151,7 +151,6 @@
 
     <% end %>
 
->>>>>>> 6146ed1d7eeff25e9657c6cdac2d3ce52373c31d
 <% end %>
 
 <div class="blog-list__container">
@@ -169,7 +168,7 @@
 
             <% if blog.reblog %>
                 <% reblog_user = User.find(blog.reblog.user_id) %>
-                Reblogged from: <a href="/account/<%= reblog_user.id %>"><%= reblog_user.username %></a>
+               Reblogged from: <a href="/account/<%= reblog_user.id %>"><%= reblog_user.username %></a>
             <% end %>
 
             <% if @viewing_user %>
