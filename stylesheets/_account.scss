@@ -21,3 +21,102 @@
 .edit-password__container {
     display: none;
 }
+
+.acct_submit {
+  background-color: #ff847c;
+  font-family: "futura";
+  text-align: center;
+  border-radius: 20%;
+  margin: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.delete-user-btn {
+  background-color: #ff847c;
+  font-family: "futura";
+  text-align: center;
+  border-radius: 20%;
+  margin: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.edit-user-btn {
+  background-color: #ff847c;
+  font-family: "futura";
+  text-align: center;
+  border-radius: 20%;
+  margin: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.backfill {
+  background-color: #FFC8C4;
+  color: black;
+}
+
+.user-info__full-name {
+    font-family: "futura";
+    list-style: none;
+    font-size: 40px;
+    color: #2a363b;
+    text-shadow: 2px 2px #ff847c;
+    font-style: italic;
+}
+
+.new_post {
+  font-family: "futura";
+  list-style: none;
+  font-size: 36px;
+  color: #2a363b;
+  text-shadow: 2px 2px #ff847c;
+  font-style: italic;
+  text-align: center;
+  margin: 10px;
+}
+
+.welcome {
+  color: #2a363b;
+  padding: 5px;
+  margin: 15px;
+  font-family: "futura";
+  list-style: none;
+  text-shadow: 2px 2px #ff847c;
+  text-align: center;
+  font-size: 50px;
+  font-style: italic;
+}
+
+.account_info {
+    color: #e84a5f;
+    font-family: "futura";
+    font-size: 18px;
+}
+
+.input_color {
+  margin: 10px auto;
+  border: 2px solid black;
+  width: 35vw;
+  background-color: #FFC8C4;
+  border-radius: 5%;
+  text-align: center;
+}
+
+.input_color2 {
+  margin: 10px auto;
+  border: 2px solid black;
+  background-color: #FFC8C4;
+  border-radius: 5%;
+  text-align: center;
+}
+
+.account_user_box {
+  margin: 10px auto;
+  border: 2px solid black;
+  background-color: #EEE6E0;
+  border-radius: 5%;
+  text-align: center;
+  width: 40vw;
+}

@@ -1,18 +1,19 @@
-
+<div class="welcome"> Welcome back Sherpa!</div>
+<div class="account_user_box">
 <div class="user-info__container">
     <h1 class="user-info__full-name">
         <%= "#{@user.fname} #{@user.lname}"%>
     </h1>
-    <p>Username: <%= @user.username %></p>
+    <p class="account_info">Username: <%= @user.username %></p>
 </div>
 
 <% if @this_user %>
     <div class="user-details__container">
-        <h3>Account details</h3>
-        <div class="user-details__full-name">
+        <h3 class="new_post">Account details</h3>
+        <div class="user-details__full-name account_info">
             Name: <%= "#{@user.fname} #{@user.lname}" %>
         </div>
-        <div class="user-details__email">
+        <div class="user-details__email account_info">
             Email address: <%= @user.email %>
         </div>
     </div>
@@ -69,26 +70,27 @@
         <button class="delete-user__cancel-btn">Cancel</button>
     </div>
 
-    <h2>Post new blog:</h2>
+
+    <h2 class="new_post">Post new blog:</h2>
     <div class="new-blog-form__container">
         <form id="new-blog-form" action="/create_blog" method="post">
 
-            <input type="text" name="[blog]title" placeholder="Blog title">
+            <input class="input_color2" type="text" name="[blog]title" placeholder="Blog title">
 
             <input type="hidden" name="[blog]user_id" value="<%= @user.id %>">
 
             <div class="new-blog-form__content-input">
-                <textarea form="new-blog-form" name="[blog]content" placeholder="Type your micro-blog here (max 150 characters)" maxlength="150" rows="3" cols="60"></textarea>
+                <textarea class="input_color" "form="new-blog-form" name="[blog]content" placeholder="Type your micro-blog here (max 150 characters)" maxlength="150" rows="3" cols="60"></textarea>
             </div>
 
-            <input type="submit">
+            <input class="acct_submit" type="submit">
         </form>
     </div>
-
+</div>
 <% end %>
 
 <div class="blog-list__container">
-    <h2><%= @user.fname %>'s Blogs</h2>
+    <h2 class="new_post"><%= @user.fname %>'s Blogs</h2>
 
     <% @blogs.each do |blog| %>
 
@@ -135,7 +137,7 @@
                                 <textarea form="update-blog-<%= blog.id %>-form" class="update-blog-form__textarea" name="content" maxlength="150" rows="3" cols="60"><%= blog.content %></textarea>
                             </div>
 
-                            <input type="submit">
+                            <input class="acct_submit" type="submit">
                             <button type="button" class="blog-list__cancel-edit-blog-btn">Cancel</button>
                         </form>
                     </div>
@@ -145,7 +147,7 @@
                         <p>Are you sure you wish to delete this blog?</p>
                         <form id="delete-blog-form" action="/destroy_blog/<%= blog.id %>" method="post">
                             <input type="hidden" name="redirect_to" value="/account/<%= @user.id %>">
-                            <input type="submit" value="Yes, delete">
+                            <input class="acct_submit" type="submit" value="Yes, delete">
                             <button type="button" class="delete-blog__cancel-btn">Cancel</button>
                         </form>
                     </div>

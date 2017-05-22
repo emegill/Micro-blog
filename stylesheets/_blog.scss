@@ -1,9 +1,50 @@
 .blog-list__item-container {
-    margin: 10px auto;
-    border: 1px solid black;
+    margin: 30px auto;
+    border: 2px solid black;
     width: 40vw;
     min-width: 250px;
     max-width: 420px;
+    background-color: #EEE6E0;
+    border-radius: 5%;
+    text-align: center;
+}
+
+.blog-list__blog-author {
+    color: #487B8C;
+    padding: 5px;
+    margin-top: 5px;
+    font-family: "futura";
+    list-style: none;
+    text-shadow: 2px 2px #ff847c;
+    text-align: center;
+    font-size: 30px;
+}
+
+.blog_test {
+    color: #487B8C;
+    padding: 5px;
+    margin-top: 5px;
+    font-family: "futura";
+    list-style: none;
+    text-shadow: 2px 2px #ff847c;
+    text-align: center;
+    font-size: 30px;
+}
+
+.blog-list__blog-title {
+    color: #487B8C;
+    font-family: "futura";
+    list-style: none;
+    text-align: center;
+    font-size: 24px;
+}
+
+.blog-list__blog-content{
+    color: #e84a5f;
+    font-family: "futura";
+    list-style: none;
+    text-align: center;
+    font-size: 18px;
 }
 
 .blog-list__cancel-edit-blog-btn {
@@ -30,4 +71,106 @@
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+.blog_btn {
+  background-color: #ff847c;
+  font-family: "futura";
+  text-align: center;
+  border-radius: 20%;
+  margin: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.favorite-btn {
+  background-color: #ff847c;
+  font-family: "futura";
+  text-align: center;
+  border-radius: 20%;
+  margin: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.blog_header {
+  color: #2a363b;
+  padding: 5px;
+  margin-top: 5px;
+  font-family: "futura";
+  list-style: none;
+  text-shadow: 2px 2px #ff847c;
+  text-align: center;
+  font-size: 45px;
+  font-style: italic;
+}
+
+.blog-list__edit-blog-btn {
+  background-color: #ff847c;
+  font-family: "futura";
+  text-align: center;
+  border-radius: 20%;
+  margin: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.blog-list__del-blog-btn {
+  background-color: #ff847c;
+  font-family: "futura";
+  text-align: center;
+  border-radius: 20%;
+  margin: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.unfavorite-btn {
+  background-color: #ff847c;
+  font-family: "futura";
+  text-align: center;
+  border-radius: 20%;
+  margin: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.delete-blog__cancel-btn {
+  background-color: #ff847c;
+  font-family: "futura";
+  text-align: center;
+  border-radius: 20%;
+  margin: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.blog_confirm_delete {
+  background-color: #ff847c;
+  font-family: "futura";
+  text-align: center;
+  border-radius: 20%;
+  margin: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.blog-list__cancel-edit-blog-btn {
+  background-color: #ff847c;
+  font-family: "futura";
+  text-align: center;
+  border-radius: 20%;
+  margin: 5px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.update-blog-form__textarea {
+  background-color: #FFC8C4;
+  color: black;
+}
+
+.blog_background {
+  background-color: #FFC8C4;
+  color: black;
 }
