@@ -190,6 +190,10 @@ post '/destroy_friendship' do
     redirect params[:redirect_to]
 end
 
-
+post '/confirm_friendship' do
+    friendship = Friendship.where(params[:friendship])[0]
+    friendship.update(status: 1)
+    redirect params[:redirect_to]
+end
 
 #
